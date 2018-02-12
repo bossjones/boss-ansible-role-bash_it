@@ -48,7 +48,7 @@ current_dir := $(notdir $(patsubst %/,%,$(dir $(mkfile_path))))
 # role_galaxy_name="bossjones.nvm" \
 # use_gilt="yes" \
 # use_delegated="no" \
-# docker_container_flavor="xenial"
+# docker_container_flavor="trusty"
 
 # hub init
 # hub add . && hub commit -m "It begins."
@@ -133,8 +133,8 @@ start_delegated_docker:
 	--privileged=true \
 	--cap-add=SYS_ADMIN \
 	-v /sys/fs/cgroup:/sys/fs/cgroup:ro \
-	--name boss-ansible-role-bash_it-xenial \
-	--hostname boss-ansible-role-bash_it-xenial \
+	--name boss-ansible-role-bash_it-trusty \
+	--hostname boss-ansible-role-bash_it-trusty \
 	-it $(TEST_IMAGE_NAME):latest sleep infinity & wait
 
 stop_delegated_docker:

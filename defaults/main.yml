@@ -1,2 +1,17 @@
 ---
 # defaults file for boss-ansible-role-bash_it
+
+bossjones__user: vagrant
+bossjones__group: vagrant
+bossjones__bash_it_user_home_dir_prefix: "/home"
+cheatsheet_update: yes
+boss__bash_it_theme: "powerline-plain"
+boss__bash_it_repository: https://github.com/Bash-it/bash-it.git
+boss__bash_it_version: master
+boss__bash_it_aliases:
+  - general
+boss__bash_it_plugins:
+  - base
+  - history
+boss__bash_it_completions:
+  - git
