@@ -38,7 +38,6 @@
     repo: "{{ boss__bash_it_repository }}"
     dest: "{{ boss__bash_it_user_home }}/.bash_it"
     version: "{{ boss__bash_it_version }}"
-  become: "{{ bossjones__user }}"
 
 - name: "change shell to bash for {{ bossjones__user }}"
   command: "chsh -s /bin/bash {{ bossjones__user }}"
@@ -50,6 +49,7 @@
     path: "{{ boss__bash_it_user_home }}/.bash_it/{{ item }}/enabled"
     state: directory
     owner: "{{ bossjones__user }}"
+    group: "{{ bossjones__user }}"
   with_items:
     - "plugins"
     - "aliases"
@@ -61,6 +61,7 @@
     dest: "{{ boss__bash_it_user_home }}/.bash_it/plugins/enabled/{{ item }}.plugin.bash"
     state: link
     owner: "{{ bossjones__user }}"
+    group: "{{ bossjones__user }}"
   with_items: '{{ boss__bash_it_plugins }}'
 
 - name: "install bash_it aliases for {{ bossjones__user }}"
@@ -69,6 +70,7 @@
     dest: "{{ boss__bash_it_user_home }}/.bash_it/aliases/enabled/{{ item }}.aliases.bash"
     state: link
     owner: "{{ bossjones__user }}"
+    group: "{{ bossjones__user }}"
   with_items: '{{ boss__bash_it_aliases }}'
 
 - name: "install bash_it completions for {{ bossjones__user }}"
@@ -77,4 +79,13 @@
     dest: "{{ boss__bash_it_user_home }}/.bash_it/completion/enabled/{{ item }}.completion.bash"
     state: link
     owner: "{{ bossjones__user }}"
+    group: "{{ bossjones__user }}"
   with_items: '{{ boss__bash_it_completions }}'
+
+- name: "chown {{ bossjones__user }}:{{ bossjones__user }} -R {{ boss__bash_it_user_home }}/.bash_it"
+  file:
+    path: "{{ boss__bash_it_user_home }}/.bash_it"
+    state: directory
+    recurse: yes
+    owner: "{{ bossjones__user }}"
+    group: "{{ bossjones__user }}"

@@ -9,8 +9,6 @@ driver:
     login_cmd_template: 'docker exec --user vagrant --tty -ti {instance} env TERM=xterm bash'
     ansible_connection_options:
       ansible_connection: docker
-driver:
-  name: docker
 lint:
   name: yamllint
   enabled: False
@@ -27,7 +25,6 @@ provisioner:
     create: ''
   options:
     vvv: True
-
   lint:
     name: ansible-lint
     enabled: False
